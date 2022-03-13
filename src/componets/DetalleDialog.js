@@ -1,10 +1,12 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { MenuItem, Button } from '@mui/material';
 
 const DetalleDialog = (props) => {
-  let cargoId = props.cargoSeleccionado.id
+  const cargoId = props.cargoSeleccionado.id
+  console.log(props)
+
   const [tableData, setTableData] = useState([])
   useEffect(() => {
     fetch('http://localhost:8000/api/estitem/' + cargoId)
@@ -12,9 +14,10 @@ const DetalleDialog = (props) => {
       .then((data) => setTableData(data))
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
   const data = Object.assign({}, tableData.data);
+  // const valuesArray = Object.entries(data);
+  // item = arr.filter(item=>item.name=="k1"); // Buscar en array
+  // let selectedProduct = this.props.products.find(product => product.name === this.state.filterText); // Buscar en json
 
-  // const valuesArray = JSON.parse(props.datosNuevos);
-  
   return (
     <div >
       <br />
@@ -33,16 +36,28 @@ const DetalleDialog = (props) => {
       <TextField fullWidth label="Procesos participativos" name="procesos_participativos" value={data.procesos_participativos || ''} disabled />
       <br />  <br />
       <TextField fullWidth label="Function" name="function" value={data.function || ''} disabled />
-      <br />
-      <br />
+      <br /> <br />
+      <TextField
+        fullWidth
+        select
+        name='parent'
+        label="Dependiente"
+        value={data.parent || ""}
+        disabled
+      >
+        {props.datos.map((option) => (
+          <MenuItem key={option.id} value={option.id} name='parent'>
+            {option.name}
+          </MenuItem>
+        ))}
+      </TextField>
       {/* {valuesArray.filter(c => c.id === props.cargoSeleccionado.parent).map(filtro => (
          <TextField label="Dependencia" name="parent" value={filtro.name} disabled />
-      ))} */}
-      {/* <TextField fullWidth label="Dependencia" name="parent" key={filtro.id.toString()} value={filtro.name} disabled /> */}
+      ))}
+      <TextField fullWidth label="Dependencia" name="parent" key={filtro.id.toString()} value={filtro.name} disabled /> */}
       <br />
     </div>
   )
-
 }
 
 export default DetalleDialog;

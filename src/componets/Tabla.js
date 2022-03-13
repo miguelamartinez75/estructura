@@ -126,7 +126,7 @@ function Tabla() {
       <Dialog fullWidth maxWidth="sm" open={dialogDetalle} onClose={abrirCerrardialogDetalle}>
         <DialogTitle>Ver detalle del Cargo</DialogTitle>
         <DialogContent>
-          <DetalleDialog cargoSeleccionado={cargoSeleccionado} datosNuevos={tableData} abrirCerrardialogEditar={abrirCerrardialogEditar} />
+          <DetalleDialog cargoSeleccionado={cargoSeleccionado} datos={tableData} abrirCerrardialogEditar={abrirCerrardialogEditar} />
         </DialogContent>
         <DialogActions>
           <Button color="primary" onClick={() => abrirCerrardialogDetalle()}>Cerrar</Button>

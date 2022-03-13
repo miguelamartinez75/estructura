@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 
 const EditarDialog = (props) => {
 
-  const [estado, setState] = React.useState({
+  const [state, setState] = React.useState({
     name: props.cargoSeleccionado.name,
     letra: props.cargoSeleccionado.letra,
     mission: props.cargoSeleccionado.mission,
@@ -21,7 +21,7 @@ const EditarDialog = (props) => {
   function handleChange(evt) {
     const value = evt.target.value;
     setState({
-      ...estado,
+      ...state,
       [evt.target.name]: value
     });
   }
@@ -31,7 +31,7 @@ const EditarDialog = (props) => {
     fetch(`http://localhost:8000/api/setest/${props.cargoSeleccionado.id}`, 
     {  
       method: "PATCH",  headers: { "Content-type": "application/json"  },  
-      body: JSON.stringify(estado)
+      body: JSON.stringify(state)
     }) 
     .then(response => {    
       console.log(response.status);     
@@ -42,21 +42,21 @@ const EditarDialog = (props) => {
   return (
     <div >
       <br />
-      <TextField fullWidth label="Nombre" name="name" value={estado.name} onChange={handleChange} />
+      <TextField fullWidth label="Nombre" name="name" value={state.name} onChange={handleChange} />
       <br />  <br />
-      <TextField fullWidth label="Letra" name="letra" value={estado.letra} onChange={handleChange} />
+      <TextField fullWidth label="Letra" name="letra" value={state.letra} onChange={handleChange} />
       <br />  <br />
-      <TextField fullWidth label="Mission" name="mission" value={estado.mission} onChange={handleChange} />
+      <TextField fullWidth label="Mission" name="mission" value={state.mission} onChange={handleChange} />
       <br />  <br />
-      <TextField fullWidth label="Decreto" name="decreto" value={estado.decreto} onChange={handleChange} />
+      <TextField fullWidth label="Decreto" name="decreto" value={state.decreto} onChange={handleChange} />
       <br />  <br />
-      <TextField fullWidth label="Marco legal" name="marco_legal" value={estado.marco_legal} onChange={handleChange} />
+      <TextField fullWidth label="Marco legal" name="marco_legal" value={state.marco_legal} onChange={handleChange} />
       <br />  <br />
-      <TextField fullWidth label="Diagnostico" name="diagnostico" value={estado.diagnostico} onChange={handleChange} />
+      <TextField fullWidth label="Diagnostico" name="diagnostico" value={state.diagnostico} onChange={handleChange} />
       <br />  <br />
-      <TextField fullWidth label="Procesos participativos" name="procesos_participativos" value={estado.procesos_participativos} onChange={handleChange} />
+      <TextField fullWidth label="Procesos participativos" name="procesos_participativos" value={state.procesos_participativos} onChange={handleChange} />
       <br />  <br />
-      <TextField fullWidth label="Function" name="function" value={estado.function} onChange={handleChange} />
+      <TextField fullWidth label="Function" name="function" value={state.function} onChange={handleChange} />
       <br />
       <br />
       <TextField
@@ -64,7 +64,7 @@ const EditarDialog = (props) => {
         select
         name='parent'
         label="Dependiente"
-        value={estado.parent || ""}
+        value={state.parent || ""}
         onChange={handleChange}
       >
         {props.datos.map((option) => (
