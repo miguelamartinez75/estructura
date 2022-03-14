@@ -21,6 +21,7 @@ function Tabla() {
     name: "",
     parent: ""
   })
+  const [reRender, setReRender] = useState(false)
   
   // Selecciona el cargo para:
   const seleccionarCargo = (cargo, accion) => {
@@ -36,16 +37,19 @@ function Tabla() {
 
   // Abrir o Cerrar ventana dialog (insertar)
   const abrirCerrardialogInsertar = () => {
+    setReRender(true)
     setdialogInsertar(!dialogInsertar);
   }
 
   // Abrir o Cerrar ventana dialog (editar)
   const abrirCerrardialogEditar = () => {
+    setReRender(true)
     setdialogEditar(!dialogEditar);
   }
 
   // Abrir o Cerrar ventana dialog (Borrar)
   const abrirCerrardialogEliminar = () => {
+    setReRender(true)
     setdialogEliminar(!dialogEliminar);
   }
 
@@ -57,10 +61,21 @@ function Tabla() {
   // Obtiene los datos JSON
   const [tableData, setTableData] = useState([])
   useEffect(() => {
+    setReRender(false)
     fetch("http://localhost:8000/api/est/")
       .then((data) => data.json())
       .then((data) => setTableData(data))
-  }, [tableData])
+  }, [reRender])
+
+  const setColores = {
+    1: '#F4FBFF',
+    2: '#FFA132',
+    3: '#FFFF00',
+    4: '#FFFF33',
+    5: '#FFFF66',
+    6: '#FFFF99',
+    7: '#FFFFCC'
+  };
 
   return (
     <div>
@@ -101,15 +116,16 @@ function Tabla() {
               seleccionarCargo(rowData, "Eliminar")
             }
           },
-          {
-            icon: () => <Icon color='secondary'>add_circle</Icon>,
-            tooltip: 'Crear nuevo cargo',
-            isFreeAction: true,
-            onClick: (event, rowData) => {
-              // Funcion para crear uno nuevo
-              seleccionarCargo(rowData, "Insertar")
-            }
-          }]}
+          // {
+          //   icon: () => <Icon color='secondary'>add_circle</Icon>,
+          //   tooltip: 'Crear nuevo cargo',
+          //   isFreeAction: true,
+          //   onClick: (event, rowData) => {
+          //     // Funcion para crear uno nuevo
+          //     seleccionarCargo(rowData, "Insertar")
+          //   }
+          // }
+        ]}
         columns={[
           { title: 'Nombre', field: 'name' },
           // { title: 'Mission', field: 'mission' },
@@ -119,6 +135,18 @@ function Tabla() {
         parentChildData={(row, rows) => rows.find(a => a.id === row.parent)}
         options={{
           actionsColumnIndex: -1,
+          defaultExpanded: true,
+          headerStyle: {
+            backgroundColor: '#00496F',
+            color: '#FFF',
+          },
+          rowStyle: rowData => {
+            if(rowData.tableData.isTreeExpanded === false && rowData.tableData.path.length === 1) {
+              return {};
+            }
+            const rowBackgroundColor = setColores[rowData.tableData.path.length];
+            return {backgroundColor: rowBackgroundColor};
+          }
         }}
       />
 

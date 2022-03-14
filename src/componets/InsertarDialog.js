@@ -73,8 +73,8 @@ const InsertarDialog = (props) => {
       </TextField>
       <br />
       <DialogActions>
-        <Button color="success" onClick={() => { EditarCargo(); props.abrirCerrardialogInsertar() }}>Guardar</Button>
-        <Button color="primary" onClick={() => props.abrirCerrardialogInsertar()}>Cerrar</Button>
+        <Button variant='contained' color="primary" onClick={() => { EditarCargo(); props.abrirCerrardialogInsertar() }}>Guardar</Button>
+        <Button variant='contained' color="warning" onClick={() => props.abrirCerrardialogInsertar()}>Cerrar</Button>
       </DialogActions >
     </div>
   )

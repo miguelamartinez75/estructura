@@ -1,5 +1,6 @@
 import React from 'react';
 import { SnackbarProvider } from 'notistack';
+import './App.css'
 import MenuPrincipal from './componets/menu';
 
 function App() {

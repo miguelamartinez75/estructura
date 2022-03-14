@@ -31,8 +31,8 @@ const EliminarDialog = (props) => {
                 <br />  <br />
             </DialogContentText>
             <DialogActions>
-                <Button color="warning" onClick={() => { eliminarCargo(props.cargoSeleccionado.id); Aviso(); props.abrirCerrardialogEliminar() }}>Eliminar</Button>
-                <Button onClick={() => props.abrirCerrardialogEliminar()}>Cancelar</Button>
+                <Button variant='outlined' color="warning" onClick={() => { eliminarCargo(props.cargoSeleccionado.id); Aviso(); props.abrirCerrardialogEliminar() }}>Eliminar</Button>
+                <Button variant='contained' color="primary" onClick={() => props.abrirCerrardialogEliminar()}>Cancelar</Button>
             </DialogActions>
         </div>
     )
