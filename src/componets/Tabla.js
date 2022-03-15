@@ -68,13 +68,13 @@ function Tabla() {
   }, [reRender])
 
   const setColores = {
-    1: '#F4FBFF',
-    2: '#FFA132',
-    3: '#FFFF00',
-    4: '#FFFF33',
-    5: '#FFFF66',
-    6: '#FFFF99',
-    7: '#FFFFCC'
+    1: '#86E140',
+    2: '#92F148',
+    3: '#B2FF75',
+    4: '#D9FFA9',
+    5: '#E9FFCE',
+    6: '#F3FFE3',
+    7: '#FFFFFF'
   };
 
   return (

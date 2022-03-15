@@ -19,7 +19,6 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
-import Tabla from './Tabla';
 
 const drawerWidth = 240;
 
@@ -142,7 +141,6 @@ export default function MenuPrincipal() {
       </Drawer>
       <Main open={open}>
      <DrawerHeader />
-        <Tabla/>
       </Main>
     </Box>
     

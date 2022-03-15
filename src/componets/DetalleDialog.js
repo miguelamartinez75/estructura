@@ -1,8 +1,7 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { useState, useEffect } from 'react';
-import { MenuItem, Button } from '@mui/material';
-import { DialogActions } from '@material-ui/core';
+import { MenuItem } from '@mui/material';
 
 const DetalleDialog = (props) => {
   const cargoId = props.cargoSeleccionado.id
